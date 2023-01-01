@@ -1,0 +1,32 @@
+
+
+getPlayerSelection() 
+ask user to type "rock" "paper" or "scissors"
+trim input and set to lowercase
+if input is not one of the 3 choices ask again
+return the input
+
+getComputerSelection()
+randomly select a number between one and three
+if it is one, return the string "rock"
+if it is two, return "paper"
+if it is three, return "scissors"
+
+playRound(playerSelection, computerSelection)
+ *playerSelection: getPlayerSelection output
+ *computerSelection: getComputerSelection output
+ return result of round in text
+  One of: 
+  "You win!"
+  "You lose!"
+  "tie!"
+
+  concatenated with one of:
+  "Rock beats Scissors"
+  "Scissors beats Paper"
+  "Paper beats Rock"
+
+game()
+call playRound 5 times
+keep track of score 
+after calling five times, display the results of each round and the winner

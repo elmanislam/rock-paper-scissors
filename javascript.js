@@ -28,9 +28,14 @@ function getComputerSelection() {
 
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(e) {
+  let playerSelection = e.target.id;
+  let computerSelection = getComputerSelection();
+  const result = document.querySelector('#result');
 
   let message;
+
+
   if (playerSelection == "rock")
   {
     message = (computerSelection == "paper") ? "You lose! paper beats rock" :
@@ -53,10 +58,19 @@ function playRound(playerSelection, computerSelection) {
     "Tie! You both picked scissors";
     
   }
-
+  console.log(message);
+  result.textContent = message;
   return message;
 
 }
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+  button.addEventListener('click', playRound);
+});
 
 function game()
 {
@@ -64,6 +78,7 @@ function game()
   let result; //store result of playRound
   let playerWinCount = 0, computerWinCount = 0;
 
+    /*
   for (let i = 0; i < 5; i++)
   {
     console.log(`ROUND ${i + 1}`);
@@ -88,7 +103,7 @@ function game()
   
     console.log(`SCORE: player ${playerWinCount}, computer ${computerWinCount}`);
 
-  }
+  } */
 
   if (playerWinCount > computerWinCount)
   {
@@ -106,5 +121,4 @@ function game()
 
 }
 
-game();
 

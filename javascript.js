@@ -1,3 +1,8 @@
+/* Global variables for counting wins */
+let playerWinCount = 0, computerWinCount = 0;
+let isGameDone = false;
+
+
 function getPlayerSelection() {
 // ask user to type "rock" "paper" or "scissors" 
 // trim input and set to lowercase
@@ -60,6 +65,30 @@ function playRound(e) {
   }
   console.log(message);
   result.textContent = message;
+
+  if (!isGameDone)
+  {
+    if ((playerWinCount < 5) && (computerWinCount < 5))
+    {
+      updateScore(message);
+    }
+
+    if (playerWinCount == 5)
+    {
+      declareWinner("PLAYER");
+      isGameDone = true;
+    }
+
+    else if (computerWinCount == 5)
+    {
+      declareWinner("CPU");
+      isGameDone = true;
+    }
+
+    console.log(`${playerWinCount}, ${computerWinCount}`);
+
+  }
+
   return message;
 
 }
@@ -72,16 +101,43 @@ buttons.forEach((button) => {
   button.addEventListener('click', playRound);
 });
 
+function updateScore(roundResultMessage) {
+
+  const score = document.querySelector('#score');
+
+  if (roundResultMessage.substring(4, 7).toLowerCase() == "win")
+  {
+    playerWinCount++;
+  }
+
+  else if (roundResultMessage.substring(4, 8).toLowerCase() == "lose")
+  {
+    computerWinCount++;
+  }
+
+  else return;
+  score.textContent = `PLAYER ${playerWinCount} - - - - - ${computerWinCount} CPU`;
+
+}
+
+function declareWinner(winnerName) {
+  const score = document.querySelector('#score');
+  score.textContent = score.textContent + `, WINNER: ${winnerName}`;
+
+}
+
+
+
 function game()
 {
   let playerSelection, computerSelection;
   let result; //store result of playRound
   let playerWinCount = 0, computerWinCount = 0;
 
-    /*
+    
   for (let i = 0; i < 5; i++)
   {
-    console.log(`ROUND ${i + 1}`);
+
 
 
     playerSelection = getPlayerSelection();
@@ -96,6 +152,7 @@ function game()
     {
       playerWinCount++;
     }
+
     else if (result.substring(4, 8).toLowerCase() == "lose")
     {
       computerWinCount++;
@@ -103,7 +160,7 @@ function game()
   
     console.log(`SCORE: player ${playerWinCount}, computer ${computerWinCount}`);
 
-  } */
+  } 
 
   if (playerWinCount > computerWinCount)
   {

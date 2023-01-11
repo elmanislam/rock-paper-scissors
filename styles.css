@@ -22,7 +22,7 @@ body {
   border-radius: 50px;
   padding: 10px 20px;
   border: 5px dashed red;
-
+  margin: 30px;
 }
 
 
@@ -41,8 +41,12 @@ button:hover {
   
 }
 
-.container {
+#score {
 
-
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 32px;
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: 5px dashed red;
 
 }
